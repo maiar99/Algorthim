@@ -55,6 +55,7 @@ public class Max_profit {
     }
 }
 /*output
-
-
+Number of jobs done: 2
+Maximum profit: 60
+BUILD SUCCESSFUL (total time: 0 seconds)
 */
