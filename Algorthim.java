@@ -18,7 +18,7 @@ public class Algorthim {
     public static void main(String[] args) {
         //2D array jobs to store the input jobs in the format (id, Deadline, Profit).
      int[][] jobs = {{1, 4, 20}, {2, 1, 10}, {3, 1, 40}, {4, 1, 30}};
-        //call the getMaxProfitAndJobs method with the input jobs
+        //call the getmax method with the input jobs
         int[] result = getmax(jobs);
         //print reault
         System.out.println("Number of jobs done: " + result[0]);
@@ -53,7 +53,10 @@ public class Algorthim {
         return result;
     }
 }
-
+//output
+//Number of jobs done: 2
+//Maximum profit: 60
+//BUILD SUCCESSFUL (total time: 0 seconds)
 
 
 
