@@ -1,0 +1,55 @@
+package projectalgo3;
+import java.util.*;
+
+public class JobScheduler {
+
+    public static int scheduleJobs(Job[] jobs) {
+
+        Arrays.sort(jobs, Comparator.comparingInt(j -> j.end));
+
+        int[] DynPro = new int[jobs.length];
+
+        DynPro[0] = jobs[0].profit;
+
+        for (int i = 1; i < jobs.length; i++) {
+            // Looping through each job starting from the second job
+
+            int profit = jobs[i].profit;
+
+            int latestNonOverlapIndex = GetLatestNonOverlapIndex(jobs, i);
+            // Finding the index of the latest job that ends before the start time of the current job using the GetLatestNonOverlapIndex() method and storing it in a variable called latestNonOverlapIndex
+
+            if (latestNonOverlapIndex != -1) {
+
+                profit += DynPro[latestNonOverlapIndex];
+                // Add the profit of that job to the profit of the current job
+
+            }
+
+            DynPro[i] = Math.max(profit, DynPro[i - 1]);
+            // Set the current element of DynPro to the maximum profit that can be earned by either not scheduling the current job or scheduling it after the previous job, whichever earns more
+
+        }
+
+        return DynPro[jobs.length - 1];
+        // Return the maximum profit that can be earned by scheduling all jobs
+
+    }
+
+    private static int GetLatestNonOverlapIndex(Job[] jobs, int index) {
+
+        for (int i = index - 1; i >= 0; i--) {
+
+            if (jobs[i].end <= jobs[index].start) {
+
+                return i;
+            }
+            
+        }
+
+        return -1;
+
+    }
+
+}
+
